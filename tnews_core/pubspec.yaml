@@ -11,7 +11,7 @@ dependencies:
   path_provider: 1.2.0
   flutter_cache_manager: ^1.1.1
   ddi:
-    path: packages/di
+    path: ../packages/di
 
 dev_dependencies:
   flutter_test:
