@@ -4,32 +4,30 @@ import 'package:ddi/ddi.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tnews/common/common.dart';
+import 'package:tnews/home_page/home_page.dart';
 import 'package:tnews/main_bloc/bloc_delegate.dart';
 import 'package:tnews/main_bloc/main_bloc.dart';
 import 'package:tnews/module/module.dart';
+import 'package:tnews/splash/splash.dart';
 import 'package:tnews_core/tnews_core.dart';
 import 'package:bloc/bloc.dart';
 
-void main() {
-  final MainAppBloc bloc = MainAppBloc();
-
-  Log.debug('this is main');
-
+void main() async {
   handleError();
+  await initAsync();
+  final MainAppBloc bloc = DI.get(MainAppBloc);
+
   runZoned(() {
     runApp(buildApp(bloc));
+    Future<void>.delayed(const Duration(milliseconds: 450)).whenComplete(() {
+      bloc.add(ActiveAppEvent());
+    });
   }, onError: (dynamic ex, dynamic trace) {
-    // Crashlytics.instance.recordError(ex, trace);
+    Log.error("Crash app $ex - $trace");
   });
-  // Future.delayed(const Duration(seconds: 5)).then((_) {
-  //   bloc.dispatch(InitMainAppEvent());
-  // });
 }
 
-void initAsync(MainAppBloc bloc) async {
-  Log.debug('this is initAsync');
-  // await Future.delayed(const Duration(seconds: 5));
+Future<void> initAsync() async {
   final Mode mode = kReleaseMode ? Mode.Production : Mode.Debug;
   final List<Module> modules = kReleaseMode
       ? <Module>[
@@ -41,11 +39,7 @@ void initAsync(MainAppBloc bloc) async {
           DevModuleCore(),
         ];
 
-  Config.initAsync(mode)
-      .then((_) => DI.initAsync(modules))
-      .catchError((dynamic ex) => Log.error(ex))
-      .whenComplete(() => bloc.add(ActiveAppEvent()));
-  // .then((_) => bloc.dispatch(CompletedInitMainAppEvent()));
+  return Config.initAsync(mode).then((_) => DI.initAsync(modules)).catchError((dynamic ex) => Log.error(ex));
 }
 
 void handleError() {
@@ -58,24 +52,49 @@ void handleError() {
   }
 }
 
+class TNavigatorObserver extends NavigatorObserver {
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic> previousRoute) {
+    Log.debug("$runtimeType didPush $route $previousRoute");
+    super.didPush(route, previousRoute);
+  }
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic> previousRoute) {
+    Log.debug("$runtimeType didPop $route $previousRoute");
+    super.didPop(route, previousRoute);
+  }
+}
+
 Widget buildApp(MainAppBloc bloc) {
-  final Widget child = blocBuilder(buildMainApp(), bloc);
+  final Widget mainApp = buildMainApp(bloc);
   return MaterialApp(
-    home: BlocProvider<MainAppBloc>(
-      builder: (_) => bloc,
-      child: child,
-    ),
+    navigatorObservers: <NavigatorObserver>[TNavigatorObserver()],
+    onGenerateRoute: (RouteSettings route) {
+      Log.info("onGenerateRoute $route");
+      return null;
+    },
+    onUnknownRoute: (RouteSettings route) {
+      Log.info("onUnknownRoute $route");
+      return null;
+    },
+    routes: <String, WidgetBuilder>{
+      '/': (_) => mainApp,
+      // ''
+    },
   );
 }
 
-Widget blocBuilder(Widget child, MainAppBloc bloc) {
+Widget buildMainApp(MainAppBloc bloc) {
+  final Widget child = HomePageScreen();
+
   return BlocBuilder<MainAppBloc, MainBlocState>(
     bloc: bloc,
     builder: (_, MainBlocState state) {
-      Log.debug('bloc_Bulder $state');
       switch (state.runtimeType) {
         case CreatedApp:
-          return buildSplashScreen();
+        case InitApp:
+          return const SplashScreen();
           break;
         case ActiveApp:
           return child;
@@ -83,36 +102,5 @@ Widget blocBuilder(Widget child, MainAppBloc bloc) {
           return child;
       }
     },
-  );
-}
-
-Widget buildSplashScreen() {
-  return Scaffold(
-    backgroundColor: TColors.white,
-    body: Center(
-      child: Image.network('https://github.com/tvc12.png'),
-      // child: Text(
-      //   'Slash Screen',
-      //   style: TTextStyles.bold(
-      //     fontSize: 150,
-      //     color: TColors.green,
-      //   ),
-      // ),
-    ),
-  );
-}
-
-Widget buildMainApp() {
-  return Scaffold(
-    backgroundColor: TColors.white,
-    body: Center(
-      child: Text(
-        'Main Screen',
-        style: TTextStyles.bold(
-          fontSize: 150,
-          color: TColors.black,
-        ),
-      ),
-    ),
   );
 }
