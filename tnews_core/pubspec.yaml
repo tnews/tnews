@@ -1,4 +1,4 @@
-name: t_core
+name: tnews_core
 description: t_core module
 
 environment:
@@ -8,12 +8,10 @@ dependencies:
   equatable: 0.5.1
   shared_preferences: 0.5.3+4
   dio: 3.0.3
-  firebase_remote_config: 0.2.0+7
-  firebase_analytics: 5.0.2
   path_provider: 1.2.0
   flutter_cache_manager: ^1.1.1
   ddi:
-    path: ../packages/di
+    path: packages/di
 
 dev_dependencies:
   flutter_test:

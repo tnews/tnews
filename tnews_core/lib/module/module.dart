@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:ddi/di.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:t_core/t_core.dart';
+import 'package:tnews_core/tnews_core.dart';
 import 'package:dio/dio.dart';
 import 'package:ddi/ddi.dart';
 import 'package:http/http.dart' as http;

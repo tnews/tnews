@@ -95,7 +95,7 @@ packages:
   ddi:
     dependency: "direct main"
     description:
-      path: "../packages/di"
+      path: "packages/di"
       relative: true
     source: path
     version: "0.1.1"
@@ -113,20 +113,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.1"
-  firebase_analytics:
-    dependency: "direct main"
-    description:
-      name: firebase_analytics
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.2"
-  firebase_remote_config:
-    dependency: "direct main"
-    description:
-      name: firebase_remote_config
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0+7"
   flutter:
     dependency: transitive
     description: flutter

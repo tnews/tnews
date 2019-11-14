@@ -1,6 +1,5 @@
-name: t_news
-description: A new Flutter project.
-
+name: tnews
+description: A new project template with Flutter.
 version: 1.0.0+1
 
 environment:
@@ -11,13 +10,11 @@ dependencies:
     sdk: flutter
   equatable: 0.5.1
   cupertino_icons: 0.1.2
+  flutter_bloc: 0.21.0
   shared_preferences: ^0.5.3+4
-  flutter_bloc: ^2.0.0
 
-  ddi:
-    path: packages/di
-  t_core:
-    path: t_core
+  tnews_core:
+    path: tnews_core
 
 dev_dependencies:
   flutter_driver:
@@ -42,7 +39,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/videos/
-    
+
   fonts:
     - family: Sarabun
       fonts:

@@ -35,7 +35,7 @@ packages:
       name: bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "0.15.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -114,9 +114,9 @@ packages:
     source: hosted
     version: "1.2.9"
   ddi:
-    dependency: "direct main"
+    dependency: transitive
     description:
-      path: "packages/di"
+      path: "tnews_core/packages/di"
       relative: true
     source: path
     version: "0.1.1"
@@ -141,20 +141,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.8+1"
-  firebase_analytics:
-    dependency: transitive
-    description:
-      name: firebase_analytics
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.2"
-  firebase_remote_config:
-    dependency: transitive
-    description:
-      name: firebase_remote_config
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0+7"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -166,7 +152,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "0.21.0"
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -460,13 +446,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0+1"
-  t_core:
-    dependency: "direct main"
-    description:
-      path: t_core
-      relative: true
-    source: path
-    version: "0.0.0"
   term_glyph:
     dependency: transitive
     description:
@@ -481,6 +460,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.5"
+  tnews_core:
+    dependency: "direct main"
+    description:
+      path: tnews_core
+      relative: true
+    source: path
+    version: "0.0.0"
   typed_data:
     dependency: transitive
     description:
