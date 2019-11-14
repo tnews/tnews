@@ -4,15 +4,15 @@ import 'package:flutter/foundation.dart';
 
 class Log {
   static void debug(dynamic data) {
-    printConsole("Log-debug:: $data");
+    printConsole("log_debug:: $data");
   }
 
   static void info(dynamic data) {
-    printConsole("Log-info:: $data");
+    printConsole("log_info:: $data");
   }
 
   static void error(dynamic data) {
-    printConsole("Log-error:: $data");
+    printConsole("log_error:: $data");
   }
 
   static void printConsole(dynamic data) {
