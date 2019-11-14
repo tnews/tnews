@@ -1,6 +1,6 @@
 part of tnews.module;
 
-class ProModule extends DevModule {
+class ProdModule extends DevModule {
   @override
   void init() {
     // TODO: implement init
