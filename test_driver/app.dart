@@ -1,5 +1,5 @@
 import 'package:flutter_driver/driver_extension.dart';
-import 'package:flutter_boilerplate/main.dart' as app;
+import 'package:t_news/main.dart' as app;
 
 void main() {
   enableFlutterDriverExtension();
