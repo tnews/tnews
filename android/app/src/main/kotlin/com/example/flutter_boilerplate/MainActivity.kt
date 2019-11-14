@@ -1,4 +1,4 @@
-package com.example.tnews
+package com.example.flutter_boilerplate
 
 import android.os.Bundle
 
