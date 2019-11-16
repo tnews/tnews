@@ -19,7 +19,7 @@ void main() async {
 
   runZoned(() {
     runApp(buildApp(bloc));
-    Future<void>.delayed(const Duration(milliseconds: 450)).whenComplete(() {
+    Future<void>.delayed(const Duration(seconds: 1)).whenComplete(() {
       bloc.add(ActiveAppEvent());
     });
   }, onError: (dynamic ex, dynamic trace) {
