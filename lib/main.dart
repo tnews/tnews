@@ -4,7 +4,7 @@ import 'package:ddi/ddi.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tnews/home_page/home_page.dart';
+import 'package:tnews/main_app/main_app.dart';
 import 'package:tnews/main_bloc/bloc_delegate.dart';
 import 'package:tnews/main_bloc/main_bloc.dart';
 import 'package:tnews/module/module.dart';
@@ -13,13 +13,14 @@ import 'package:tnews_core/tnews_core.dart';
 import 'package:bloc/bloc.dart';
 
 void main() async {
-  handleError();
-  await initAsync();
-  final MainAppBloc bloc = DI.get(MainAppBloc);
+  WidgetsFlutterBinding.ensureInitialized();
 
+  handleError();
+  final MainAppBloc bloc = MainAppBloc();
+  initAsync(bloc);
   runZoned(() {
-    runApp(buildApp(bloc));
-    Future<void>.delayed(const Duration(seconds: 1)).whenComplete(() {
+    runApp(buildMainApp(bloc));
+    Future<void>.delayed(const Duration(seconds: 50)).whenComplete(() {
       bloc.add(ActiveAppEvent());
     });
   }, onError: (dynamic ex, dynamic trace) {
@@ -27,7 +28,7 @@ void main() async {
   });
 }
 
-Future<void> initAsync() async {
+Future<void> initAsync(MainAppBloc bloc) async {
   final Mode mode = kReleaseMode ? Mode.Production : Mode.Debug;
   final List<Module> modules = kReleaseMode
       ? <Module>[
@@ -39,7 +40,11 @@ Future<void> initAsync() async {
           DevModuleCore(),
         ];
 
-  return Config.initAsync(mode).then((_) => DI.initAsync(modules)).catchError((dynamic ex) => Log.error(ex));
+  return Config.initAsync(mode)
+      .then((_) => DI.initAsync(modules))
+      .catchError((dynamic ex) => Log.error(ex))
+      .whenComplete(() => Future<void>.delayed(const Duration(milliseconds: 150))
+          .then((_) => bloc.add(ActiveAppEvent())));
 }
 
 void handleError() {
@@ -52,54 +57,20 @@ void handleError() {
   }
 }
 
-class TNavigatorObserver extends NavigatorObserver {
-  @override
-  void didPush(Route<dynamic> route, Route<dynamic> previousRoute) {
-    Log.debug("$runtimeType didPush $route $previousRoute");
-    super.didPush(route, previousRoute);
-  }
-
-  @override
-  void didPop(Route<dynamic> route, Route<dynamic> previousRoute) {
-    Log.debug("$runtimeType didPop $route $previousRoute");
-    super.didPop(route, previousRoute);
-  }
-}
-
-Widget buildApp(MainAppBloc bloc) {
-  final Widget mainApp = buildMainApp(bloc);
-  return MaterialApp(
-    navigatorObservers: <NavigatorObserver>[TNavigatorObserver()],
-    onGenerateRoute: (RouteSettings route) {
-      Log.info("onGenerateRoute $route");
-      return null;
-    },
-    onUnknownRoute: (RouteSettings route) {
-      Log.info("onUnknownRoute $route");
-      return null;
-    },
-    routes: <String, WidgetBuilder>{
-      '/': (_) => mainApp,
-      // ''
-    },
-  );
-}
-
 Widget buildMainApp(MainAppBloc bloc) {
-  final Widget child = HomePageScreen();
-
   return BlocBuilder<MainAppBloc, MainBlocState>(
     bloc: bloc,
     builder: (_, MainBlocState state) {
+      Log.debug("current state $state");
       switch (state.runtimeType) {
         case CreatedApp:
         case InitApp:
           return const SplashScreen();
           break;
         case ActiveApp:
-          return child;
+          return MainAppScreen(bloc);
         default:
-          return child;
+          return const SplashScreen();
       }
     },
   );

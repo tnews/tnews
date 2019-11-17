@@ -1,9 +1,8 @@
 part of tnews.common.theme;
 
-class DarkTheme extends TNewsTheme {
+class TNewsDarkTheme extends TNewsTheme {
   @override
   ThemeData getTheme() {
-    // TODO: implement getTheme
-    return null;
+    return ThemeData();
   }
 }

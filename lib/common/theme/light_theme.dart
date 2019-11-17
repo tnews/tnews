@@ -1,6 +1,6 @@
 part of tnews.common.theme;
 
-class LightTheme extends TNewsTheme {
+class TNewsLightTheme extends TNewsTheme {
   @override
   ThemeData getTheme() {
     return ThemeData.from(
