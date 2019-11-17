@@ -1,6 +1,8 @@
 library tnews.main_bloc;
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:tnews/common/theme/theme.dart';
 
 part 'main_bloc_event.dart';
 part 'main_bloc_state.dart';
@@ -12,6 +14,10 @@ class MainAppBloc extends Bloc<MainBlocEvent, MainBlocState> {
     DeActiveAppEvent: DeActiveApp(),
     ReloadAppEvent: ReloadApp(),
   };
+  final TNewsTheme darkTheme = TNewsDarkTheme();
+  final TNewsLightTheme lightTheme = TNewsLightTheme();
+  ThemeMode themeMode = ThemeMode.light;
+
   @override
   MainBlocState get initialState => CreatedApp();
 

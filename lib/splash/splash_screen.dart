@@ -10,8 +10,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   final String imageAsset = "assets/images/splash_screen.png";
 
-  double width = 0;
-  double height = 0;
+  double width = 250;
+  double height = 150;
 
   Timer timer;
 
@@ -32,16 +32,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Hero(
-          child: AnimatedContainer(
-            width: width,
-            height: height,
-            child: Image.asset(imageAsset),
-            duration: const Duration(seconds: 500),
-          ),
-          tag: imageAsset,
+    return Container(
+      color: TColors.white,
+      child: Center(
+        child: AnimatedContainer(
+          width: width,
+          height: height,
+          child: Image.asset(imageAsset),
+          duration: const Duration(milliseconds: 250),
         ),
       ),
     );
