@@ -3,11 +3,14 @@ library tnews.main_bloc;
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:tnews/common/theme/theme.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:tnews_core/util/log.dart';
 
 part 'main_bloc_event.dart';
 part 'main_bloc_state.dart';
+part 't_bloc.dart';
 
-class MainAppBloc extends Bloc<MainBlocEvent, MainBlocState> {
+class MainAppBloc extends TBloc<MainBlocEvent, MainBlocState> {
   final Map<Type, MainBlocState> mapToState = <Type, MainBlocState>{
     InitAppEvent: InitApp(),
     ActiveAppEvent: ActiveApp(),
@@ -22,7 +25,20 @@ class MainAppBloc extends Bloc<MainBlocEvent, MainBlocState> {
   MainBlocState get initialState => CreatedApp();
 
   @override
-  Stream<MainBlocState> mapEventToState(MainBlocEvent event) async* {
+  Duration get delayEvent => const Duration(milliseconds: 50);
+
+  @override
+  Stream<MainBlocState> errorToState(BaseErrorEvent event) {
+    return null;
+  }
+
+  @override
+  Stream<MainBlocState> eventToState(BaseEvent event) async* {
+    Log.debug("event ${event.runtimeType}");
     yield mapToState[event.runtimeType];
+  }
+
+  void runApp() {
+    add(ActiveAppEvent());
   }
 }
