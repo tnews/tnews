@@ -101,6 +101,7 @@ class FakeNewsRepository extends NewsRepository {
   }
 
   XNews _getXNews() {
+    final List<String> categories = this.categories.map((Category item) => item.name).toList();
     return XNews(
       id: ThinId.randomId(),
       lang: ThinId.randomId(),

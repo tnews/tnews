@@ -14,12 +14,14 @@ class NewsServiceImpl extends NewsService {
 
   @override
   Future<List<News>> searchNews([SearchRequest request]) {
-    return repository.searchNews(request);
+    final SearchRequest req = request ?? SearchRequest.defaultSearchNews();
+    return repository.searchNews(req);
   }
 
   @override
   Future<List<XNews>> searchXNews([SearchRequest request]) {
-    return repository.searchXNews(request);
+    final SearchRequest req = request ?? SearchRequest.defaultSearchNews();
+    return repository.searchXNews(req);
   }
 
   @override
