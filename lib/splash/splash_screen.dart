@@ -8,8 +8,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final String imageAsset = "assets/images/splash_screen.png";
-
   double width = 250;
   double height = 150;
 
@@ -38,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: AnimatedContainer(
           width: width,
           height: height,
-          child: Image.asset(imageAsset),
+          child: Image.asset(Assets.imageAsset),
           duration: const Duration(milliseconds: 500),
         ),
       ),
