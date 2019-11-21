@@ -5,7 +5,7 @@ environment:
   sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
-  intl: ^0.16.0
+  intl: ^0.15.8
   equatable: 0.5.1
   shared_preferences: 0.5.3+4
   dio: 3.0.3
