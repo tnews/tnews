@@ -1,6 +1,13 @@
-library t_core.util;
+library t_core.utils;
+
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
+
+part "string_converter.dart";
+part 'thinid.dart';
+part 'time_converter.dart';
 
 class Log {
   static void debug(dynamic data) {
