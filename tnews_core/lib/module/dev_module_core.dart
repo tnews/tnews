@@ -16,6 +16,8 @@ class DevModuleCore extends AbstractModule {
     bind(DIKeys.cache_image).to(await _buildCacheImage());
     bind(SharedPreferences).to(await _buildSharedPrefrendces());
     bind(StorageService).to(_buildStorageService());
+    bind(NewsRepository).to(FakeNewsRepository());
+    bind(NewsService).to(_buildNewsService());
   }
 
   HttpClient _buildClient() {
@@ -62,5 +64,11 @@ class DevModuleCore extends AbstractModule {
     final SharedPreferences shared = this.get<SharedPreferences>(SharedPreferences);
     final StorageRepository repository = StorageRepositoryImpl(shared);
     return StorageServiceImpl(repository);
+  }
+
+  NewsService _buildNewsService() {
+    final NewsRepository repository = this.get(NewsRepository);
+
+    return NewsServiceImpl(repository);
   }
 }
