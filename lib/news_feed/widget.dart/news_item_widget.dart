@@ -6,19 +6,23 @@ abstract class XBaseNews extends StatelessWidget {
 }
 
 class NewsItemWidget extends XBaseNews {
-  NewsItemWidget(XNews news, {Key key}) : super(news, key: key);
+  final ValueChanged<String> onTap;
+  NewsItemWidget(XNews news, {Key key, this.onTap}) : super(news, key: key);
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     return InkWell(
-      // onTap: () => XError.f4(navigateNewsDetailScreen, context, bloc, id,categoryMap),
+      onTap: _onTap,
       child: Container(
         height: 96,
+        margin: const EdgeInsets.symmetric(vertical: 10),
         child: Flex(
           direction: Axis.horizontal,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Flexible(child: _buildImage(this.news.thumbnail)),
-            // Expanded(flex: 2, child: _buildContent()),
+            Expanded(flex: 2, child: _buildContent(theme)),
           ],
         ),
       ),
@@ -35,67 +39,66 @@ class NewsItemWidget extends XBaseNews {
     );
   }
 
-  // Widget _buildContent() {
-  //   return Container(
-  //     padding: const EdgeInsets.only(left: 10),
-  //     child: Flex(
-  //       direction: Axis.vertical,
-  //       mainAxisAlignment: MainAxisAlignment.start,
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: <Widget>[
-  //         // _buildTitle(toPascalCase(news.headline)),
-  //         SizedBox(height: 3),
-  //         Flexible(
-  //           child: _buildCreator(news.source, news.url, news.publishedTime,),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
+  Widget _buildContent(ThemeData theme) {
+    final String title = StringConverter.toPascalCase(news.headline) ?? '';
+    final String firstCategory = news.categories?.isNotEmpty == true ? news.categories.first : null;
+    final String category = StringConverter.toPascalCase(firstCategory) ?? '';
 
-  // Widget _buildTitle(String headline) {
-  //   return HeadlineWidget(
-  //     text: headline,
-  //     style: SemiBoldTextStyle(16).copyWith(
-  //       height: 1.4,
-  //       fontSize: 16,
-  //     ),
-  //   );
-  // }
+    return Container(
+      padding: const EdgeInsets.only(left: 10),
+      child: Flex(
+        direction: Axis.vertical,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          _buildTitle(title, theme),
+          SizedBox(height: 3),
+          Flexible(
+            child: _buildCreator(category, news.source ?? '', news.url ?? '', theme),
+          ),
+        ],
+      ),
+    );
+  }
 
-  // Widget _buildCreator(String source, String url, int time) {
-  //   final String time = getTime(this.news.publishedTime);
-  //   return Flex(
-  //     direction: Axis.horizontal,
-  //     mainAxisSize: MainAxisSize.max,
-  //     children: <Widget>[
-  //       _buildTimeWidget(time),
-  //       Expanded(
-  //         child: SourceWidget(
-  //           text: source,
-  //           url: url,
-  //           style: RegularTextStyle(14).copyWith(
-  //             height: 1.4,
-  //             color: XedColors.battleShipGrey,
-  //           ),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
+  Widget _buildTitle(String title, ThemeData theme) {
+    return Text(
+      title,
+      style: theme.textTheme.title.copyWith(
+        fontWeight: FontWeight.w900,
+        color: theme.accentColor,
+      ),
+      maxLines: 3,
+      overflow: TextOverflow.ellipsis,
+    );
+  }
 
-  // Widget _buildTimeWidget(String time) {
-  //   return time is String
-  //       ? Text(
-  //           time + ' • ',
-  //           style: RegularTextStyle(14).copyWith(
-  //             height: 1.4,
-  //             color: XedColors.battleShipGrey,
-  //           ),
-  //           maxLines: 1,
-  //         )
-  //       : SizedBox();
-  // }
+  Widget _buildCreator(String category, String source, String url, ThemeData theme) {
+    return Flex(
+      direction: Axis.horizontal,
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          category,
+          style: theme.textTheme.subtitle,
+          maxLines: 1,
+        ),
+        Text(" • ", style: theme.textTheme.subtitle),
+        Text(
+          source,
+          style: theme.textTheme.subtitle.copyWith(
+            color: theme.primaryColor.withOpacity(0.8),
+            fontStyle: FontStyle.italic,
+            decoration: TextDecoration.underline,
+          ),
+          maxLines: 1,
+        )
+      ],
+    );
+  }
 
-  // static String getTime(int publishedTime) {
+  void _onTap() {
+    if (onTap != null) onTap(news.id);
+  }
 }
