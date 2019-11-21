@@ -10,7 +10,7 @@ class SearchRequest {
 
   SearchRequest.defaultSearchNews()
       : from = 0,
-        size = 15 {
+        size = 30 {
     this.addSort(SortQuery('published_time', 'desc'));
   }
 

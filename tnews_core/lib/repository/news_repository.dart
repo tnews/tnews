@@ -13,6 +13,7 @@ class FakeNewsRepository extends NewsRepository {
 
   final List<String> sources = <String>["cat.com", "dog.com", "tiger.com", "ahihi.com"];
   final List<String> authors = <String>["roman", "woman", "tiger", "ahihi"];
+
   final List<Category> categories = <Category>[
     Category(id: ThinId.randomId(), name: "Travel"),
     Category(id: ThinId.randomId(), name: "All"),
@@ -100,6 +101,7 @@ class FakeNewsRepository extends NewsRepository {
   }
 
   XNews _getXNews() {
+    final List<String> categories = this.categories.map((Category item) => item.name).toList();
     return XNews(
       id: ThinId.randomId(),
       lang: ThinId.randomId(),

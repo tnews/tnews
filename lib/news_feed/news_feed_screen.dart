@@ -1,25 +1,36 @@
 part of tnews.news_feed;
 
 class NewsFeedScreen extends TStatelessWidget {
+  static NewsService service = DI.get(NewsService);
+  final Future<List<XNews>> news = service.searchXNews();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TAppBar(
-        child: Flex(
-          direction: Axis.horizontal,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Image.asset(Assets.imageAsset), //Logo
-            Spacer(),
-            TCircleIcon(child: Icon(Icons.search)), //Icon Search
-            SizedBox(width: 7),
-            TCircleIcon(child: Icon(Icons.settings)), //Icon Search
-            SizedBox(width: 15),
-          ],
-        ),
+      appBar: NewsFeedAppBar(),
+      body: FutureBuilder<List<XNews>>(
+        future: news,
+        builder: (_, AsyncSnapshot<List<XNews>> snapshot) {
+          if (snapshot.hasData) {
+            return _buildListingNews(snapshot.data);
+          } else
+            return Center(child: CircularProgressIndicator());
+        },
       ),
-      body: Container(),
     );
   }
+
+  Widget _buildListingNews(List<XNews> data) {
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      itemExtent: 120,
+      physics: const BouncingScrollPhysics(),
+      itemCount: data.length,
+      itemBuilder: (_, int index) => NewsItemWidget(
+        data[index],
+        onTap: _onTapNews,
+      ),
+    );
+  }
+
+  void _onTapNews(String value) {}
 }

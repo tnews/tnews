@@ -15,4 +15,6 @@ abstract class TColors {
   static const Color error = Color.fromARGB(255, 232, 5, 5);
 
   static const Color text_white = Color.fromARGB(255, 250, 250, 250);
+
+  static const Color duck_egg_blue = const Color.fromARGB(255, 220, 221, 221);
 }
