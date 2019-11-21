@@ -20,9 +20,6 @@ void main() async {
   initAsync(bloc);
   runZoned(() {
     runApp(buildMainApp(bloc));
-    Future<void>.delayed(const Duration(seconds: 50)).whenComplete(() {
-      bloc.add(ActiveAppEvent());
-    });
   }, onError: (dynamic ex, dynamic trace) {
     Log.error("Crash app $ex - $trace");
   });
@@ -42,9 +39,12 @@ Future<void> initAsync(MainAppBloc bloc) async {
 
   return Config.initAsync(mode)
       .then((_) => DI.initAsync(modules))
-      .catchError((dynamic ex) => Log.error(ex))
-      .whenComplete(() => Future<void>.delayed(const Duration(milliseconds: 150))
-          .then((_) => bloc.add(ActiveAppEvent())));
+      .then(
+        (_) => Future<void>.delayed(const Duration(milliseconds: 150)).then(
+          (_) => bloc.runApp(),
+        ),
+      )
+      .catchError((dynamic ex) => Log.error(ex));
 }
 
 void handleError() {

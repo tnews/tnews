@@ -1,6 +1,6 @@
 part of tnews.main_bloc;
 
-abstract class MainBlocEvent {
+abstract class MainBlocEvent extends BaseEvent {
   @override
   String toString() => "MainBlocEvent";
 }

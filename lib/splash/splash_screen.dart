@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
           width: width,
           height: height,
           child: Image.asset(imageAsset),
-          duration: const Duration(milliseconds: 250),
+          duration: const Duration(milliseconds: 500),
         ),
       ),
     );

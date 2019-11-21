@@ -8,7 +8,7 @@ enum AppStatus {
   DeActive, // app deactive
 }
 
-abstract class MainBlocState {
+abstract class MainBlocState extends BaseState {
   static AppStatus statusApp = AppStatus.Created;
 
   MainBlocState(AppStatus statusApp) {
