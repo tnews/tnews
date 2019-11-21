@@ -37,14 +37,15 @@ class _BottomBarWidgetState extends TState<BottomBarWidget> with SingleTickerPro
     return Scaffold(
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              spreadRadius: 6,
-              color: TColors.black.withAlpha(25),
-              blurRadius: 6,
-              offset: Offset(0, 4),
-            )
-          ],
+          boxShadow: TShadows.defaultShadow,
+          // boxShadow: <BoxShadow>[
+          //   BoxShadow(
+          //     spreadRadius: 6,
+          //     color: TColors.black.withAlpha(25),
+          //     blurRadius: 6,
+          //     offset: Offset(0, 4),
+          //   )
+          // ],
         ),
         child: BottomAppBar(
           child: BottomBarSelector(
