@@ -8,6 +8,7 @@ abstract class StorageRepository {
 /// Key get value
 abstract class _StorageKeys {
   static const String token = 'token_user';
+  static const String favorite_news = 'favorite_news';
 }
 
 class StorageRepositoryImpl extends StorageRepository {
