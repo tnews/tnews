@@ -36,17 +36,7 @@ class _BottomBarWidgetState extends TState<BottomBarWidget> with SingleTickerPro
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: TShadows.defaultShadow,
-          // boxShadow: <BoxShadow>[
-          //   BoxShadow(
-          //     spreadRadius: 6,
-          //     color: TColors.black.withAlpha(25),
-          //     blurRadius: 6,
-          //     offset: Offset(0, 4),
-          //   )
-          // ],
-        ),
+        decoration: BoxDecoration(boxShadow: TShadows.defaultShadow),
         child: BottomAppBar(
           child: BottomBarSelector(
             controller: tabController,
@@ -55,6 +45,7 @@ class _BottomBarWidgetState extends TState<BottomBarWidget> with SingleTickerPro
         ),
       ),
       body: TabBarView(
+        physics: const BouncingScrollPhysics(),
         controller: tabController,
         children: children,
       ),

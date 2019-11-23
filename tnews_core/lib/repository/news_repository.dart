@@ -20,6 +20,16 @@ class FakeNewsRepository extends NewsRepository {
     Category(id: ThinId.randomId(), name: "Woman"),
     Category(id: ThinId.randomId(), name: "World"),
     Category(id: ThinId.randomId(), name: "Animal"),
+    Category(id: ThinId.randomId(), name: "Travel"),
+    Category(id: ThinId.randomId(), name: "All"),
+    Category(id: ThinId.randomId(), name: "Woman"),
+    Category(id: ThinId.randomId(), name: "World"),
+    Category(id: ThinId.randomId(), name: "Animal"),
+    Category(id: ThinId.randomId(), name: "Travel"),
+    Category(id: ThinId.randomId(), name: "All"),
+    Category(id: ThinId.randomId(), name: "Woman"),
+    Category(id: ThinId.randomId(), name: "World"),
+    Category(id: ThinId.randomId(), name: "Animal"),
   ];
 
   final List<String> contents = <String>[

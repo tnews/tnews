@@ -4,7 +4,8 @@ class NewsFeedAppBar extends TAppBar implements PreferredSizeWidget {
   final VoidCallback onTapSearch;
   final VoidCallback onTapSetting;
 
-  const NewsFeedAppBar({this.onTapSearch, this.onTapSetting, Key key}) : super(key: key);
+  const NewsFeedAppBar({this.onTapSearch, this.onTapSetting, Key key})
+      : super(key: key, preferredSize: const Size.fromHeight(44));
 
   @override
   Widget build(BuildContext context) {

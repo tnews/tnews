@@ -9,3 +9,5 @@ import 'package:tnews_core/tnews_core.dart';
 
 part 'news_item_widget.dart';
 part 'news_feed_app_bar.dart';
+part 'category_item_widget.dart';
+part 'category_bar_widget.dart';
