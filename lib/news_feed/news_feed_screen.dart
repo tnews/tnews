@@ -1,9 +1,29 @@
 part of tnews.news_feed;
 
-class NewsFeedScreen extends TStatelessWidget {
+class NewsFeedScreen extends TStatefulWidget {
   static NewsService service = DI.get(NewsService);
-  final Future<List<XNews>> news = service.searchXNews();
-  final Future<List<Category>> categories = service.getCategories();
+
+  @override
+  _NewsFeedScreenState createState() => _NewsFeedScreenState();
+}
+
+class _NewsFeedScreenState extends TState<NewsFeedScreen> {
+  final Future<List<XNews>> news = NewsFeedScreen.service.searchXNews();
+
+  final Future<List<Category>> categories = NewsFeedScreen.service.getCategories();
+  double height = 0;
+  List<Category> data;
+
+  @override
+  void initState() {
+    super.initState();
+    categories.then((_) {
+      setState(() {
+        data = _;
+        height = 32;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,22 +33,12 @@ class NewsFeedScreen extends TStatelessWidget {
         direction: Axis.vertical,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Flexible(
-            flex: 1,
-            child: FutureBuilder<List<Category>>(
-              future: categories,
-              builder: (_, AsyncSnapshot<List<Category>> snapshot) {
-                if (snapshot.hasData) {
-                  return CategoryBarWidget(
-                    categories: snapshot.data,
-                  );
-                } else
-                  return Center(child: CircularProgressIndicator());
-              },
-            ),
+          AnimatedContainer(
+            height: height,
+            duration: const Duration(milliseconds: 150),
+            child: height != 0 ? CategoryBarWidget(categories: data) : SizedBox(),
           ),
           Flexible(
-            flex: 15,
             child: FutureBuilder<List<XNews>>(
               future: news,
               builder: (_, AsyncSnapshot<List<XNews>> snapshot) {
