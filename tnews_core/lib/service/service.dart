@@ -11,3 +11,4 @@ import 'package:tnews_core/repository/repository.dart';
 part 'cache_service.dart';
 part 'storage_service.dart';
 part 'news_service.dart';
+part 'favorite_service.dart';

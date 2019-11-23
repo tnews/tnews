@@ -18,6 +18,8 @@ class DevModuleCore extends AbstractModule {
     bind(StorageService).to(_buildStorageService());
     bind(NewsRepository).to(FakeNewsRepository());
     bind(NewsService).to(_buildNewsService());
+    bind(FavoriteRepository).to(avoriteRepository());
+    bind(FavoriteService).to(_buildFavoriteService());
   }
 
   HttpClient _buildClient() {
@@ -70,5 +72,15 @@ class DevModuleCore extends AbstractModule {
     final NewsRepository repository = this.get(NewsRepository);
 
     return NewsServiceImpl(repository);
+  }
+
+  FavoriteRepository avoriteRepository() {
+    final SharedPreferences shared = get(SharedPreferences);
+    return LocalFavoriteRepository(shared);
+  }
+
+  FavoriteService _buildFavoriteService() {
+    final FavoriteRepository repository = get(FavoriteRepository);
+    return FavoriteServiceImpl(repository);
   }
 }
