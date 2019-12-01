@@ -1,7 +1,7 @@
 part of t_core.service;
 
 abstract class HistoryService {
-  Future<List<XNews>> getListNews();
+  Future<List<XNews>> getAllNews();
 }
 
 class HistoryServiceImpl extends HistoryService {
@@ -10,7 +10,7 @@ class HistoryServiceImpl extends HistoryService {
   HistoryServiceImpl(this.service);
 
   @override
-  Future<List<XNews>> getListNews() {
+  Future<List<XNews>> getAllNews() {
     return service.getListCachedNews();
   }
 }

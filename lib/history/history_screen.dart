@@ -1,19 +1,13 @@
-part of tnews.favorite;
+part of tnews.history;
 
-class FavoriteScreen extends TStatefulWidget {
-  @override
-  _FavoriteScreenState createState() => _FavoriteScreenState();
-}
-
-class _FavoriteScreenState extends TState<FavoriteScreen> {
-  final FavoriteService favoriteService = DI.get(FavoriteService);
-
+class HistoryScreen extends StatelessWidget {
+  final HistoryService historyService = DI.get(HistoryService);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("FAVORITE NEWS")),
       body: FutureBuilder<List<XNews>>(
-        future: favoriteService.getAllFavoriteNews(),
+        future: historyService.getAllNews(),
         builder: (_, AsyncSnapshot<List<XNews>> snapshot) {
           if (snapshot.hasData) {
             return _buildListFavorite(snapshot.data);

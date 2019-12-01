@@ -9,7 +9,7 @@ class HomePageScreen extends TStatelessWidget {
   ];
   final List<Widget> children = <Widget>[
     NewsFeedScreen(),
-    FollowScreen(),
+    HistoryScreen(),
     FavoriteScreen(),
   ];
 
