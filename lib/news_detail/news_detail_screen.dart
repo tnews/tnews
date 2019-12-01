@@ -40,13 +40,40 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
   }
 
   Widget _buildXNews(XNews news) {
-    return Scaffold();
+    return Scaffold(
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        primary: true,
+        slivers: <Widget>[
+          SliverPersistentHeader(
+            delegate: SliverHeaderNewsDetailDelegate(
+                thumbnail: news.thumbnail, title: news.headline, onTapBack: _onTapBack),
+            pinned: true,
+            floating: false,
+          ),
+          SliverFillRemaining(
+            child: ListView.separated(
+              physics: const NeverScrollableScrollPhysics(),
+              primary: false,
+              itemCount: news.contents.length,
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
+              itemBuilder: (_, int index) => Text(news.contents[index]),
+              separatorBuilder: (_, __) => SizedBox(height: 25),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   void _registerCloseScreen() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.of(context).pop<ResultPop>(ResultPop.Failure);
     });
+  }
+
+  void _onTapBack() {
+    Navigator.of(context).pop<ResultPop>(ResultPop.Success);
   }
 }
 
