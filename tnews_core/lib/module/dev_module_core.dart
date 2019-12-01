@@ -21,6 +21,7 @@ class DevModuleCore extends AbstractModule {
     bind(FavoriteRepository).to(avoriteRepository());
     bind(FavoriteService).to(_buildFavoriteService());
     bind(CachedNewsDetailService).to(_buildCacheNewsDetailService());
+    bind(NewsDetailService).to(_buildNewsDetailService());
     bind(HistoryService).to(_buildHistoryService());
   }
 
@@ -90,6 +91,10 @@ class DevModuleCore extends AbstractModule {
     final NewsRepository repository = this.get(NewsRepository);
 
     return CachedNewsDetailServiceImpl(repository);
+  }
+
+  NewsDetailService _buildNewsDetailService() {
+    return get(CachedNewsDetailService);
   }
 
   HistoryService _buildHistoryService() {

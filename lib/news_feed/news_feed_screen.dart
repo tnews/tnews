@@ -68,5 +68,18 @@ class _NewsFeedScreenState extends TState<NewsFeedScreen> {
     );
   }
 
-  void _onTapNews(String value) {}
+  void _onTapNews(String id) {
+    TWidget.navigateToScreen<ResultPop>(
+      screen: NewsDetailScreen(id: id),
+      name: NewsDetailScreen.name,
+      context: context,
+    ).then((ResultPop result) {
+      if (result == ResultPop.Failure) {
+        TWidget.showError(context: context, message: "Báo bạn đọc bị lỗi, mời thử lại!");
+      }
+    }).catchError((_) {
+      Log.error(_);
+      TWidget.showError(context: context, message: "Báo bạn đọc bị lỗi, mời thử lại!");
+    });
+  }
 }
