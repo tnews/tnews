@@ -12,13 +12,35 @@ abstract class TWidget {
       ),
     );
   }
+
+  static void showError({
+    @required BuildContext context,
+    @required String message,
+    Duration duration = const Duration(seconds: 3),
+  }) async {
+    try {
+      await Future<void>.delayed(const Duration(milliseconds: 150));
+
+      Scaffold.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(
+            content: Text(message),
+            backgroundColor: Theme.of(context).errorColor,
+            duration: duration,
+          ),
+        );
+    } catch (e) {
+      Log.error("_showError: $e");
+    }
+  }
 }
 
 abstract class TStatefulWidget extends StatefulWidget {
   const TStatefulWidget({Key key}) : super(key: key);
 
   @override
-    // ignore: always_specify_types
+  // ignore: always_specify_types
   TState createState();
 }
 
