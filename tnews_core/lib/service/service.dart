@@ -12,3 +12,5 @@ part 'cache_service.dart';
 part 'storage_service.dart';
 part 'news_service.dart';
 part 'favorite_service.dart';
+part 'history_service.dart';
+part 'news_detail_service.dart';

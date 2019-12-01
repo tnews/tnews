@@ -5,6 +5,8 @@ abstract class NewsRepository {
   Future<List<Category>> getCategories();
   Future<List<News>> searchNews([SearchRequest request]);
   Future<List<XNews>> searchXNews([SearchRequest request]);
+  Future<XNews> getXNews(String id);
+  Future<News> getNews(String id);
 }
 
 class FakeNewsRepository extends NewsRepository {
@@ -143,5 +145,17 @@ class FakeNewsRepository extends NewsRepository {
       thumbnail: getRandom(images),
       url: getRandom(images),
     );
+  }
+
+  @override
+  Future<News> getNews(String id) {
+    return null;
+  }
+
+  @override
+  Future<XNews> getXNews(String id) {
+    return Future<Category>.delayed(timeDelay).then((_) {
+      return _getXNews();
+    });
   }
 }
