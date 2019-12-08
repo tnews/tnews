@@ -78,7 +78,7 @@ class _NewsFeedScreenState extends TState<NewsFeedScreen> {
         TWidget.showError(context: context, message: "Báo bạn đọc bị lỗi, mời thử lại!");
       }
     }).catchError((_) {
-      Log.error(_);
+      Logger.error(_);
       TWidget.showError(context: context, message: "Báo bạn đọc bị lỗi, mời thử lại!");
     });
   }

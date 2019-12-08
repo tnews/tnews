@@ -4,6 +4,7 @@ abstract class FavoriteService {
   Future<List<XNews>> getAllFavoriteNews();
   Future<bool> delete(String id);
   Future<bool> add(XNews news);
+  Future<bool> isFavorite(String id);
 }
 
 class FavoriteServiceImpl extends FavoriteService {
@@ -24,5 +25,10 @@ class FavoriteServiceImpl extends FavoriteService {
   @override
   Future<List<XNews>> getAllFavoriteNews() {
     return repository.getAllFavoriteNews();
+  }
+
+  @override
+  Future<bool> isFavorite(String id) {
+    return repository.isFavorite(id);
   }
 }

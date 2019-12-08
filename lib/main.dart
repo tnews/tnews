@@ -21,7 +21,7 @@ void main() async {
   runZoned(() {
     runApp(buildMainApp(bloc));
   }, onError: (dynamic ex, dynamic trace) {
-    Log.error("Crash app $ex - $trace");
+    Logger.error("Crash app $ex - $trace");
   });
 }
 
@@ -44,7 +44,7 @@ Future<void> initAsync(MainAppBloc bloc) async {
           (_) => bloc.runApp(),
         ),
       )
-      .catchError((dynamic ex) => Log.error(ex));
+      .catchError((dynamic ex) => Logger.error(ex));
 }
 
 void handleError() {
@@ -61,7 +61,7 @@ Widget buildMainApp(MainAppBloc bloc) {
   return BlocBuilder<MainAppBloc, MainBlocState>(
     bloc: bloc,
     builder: (_, MainBlocState state) {
-      Log.debug("current state $state");
+      Logger.debug("current state $state");
       switch (state.runtimeType) {
         case CreatedApp:
         case InitApp:

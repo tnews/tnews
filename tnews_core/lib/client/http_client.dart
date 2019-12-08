@@ -50,7 +50,7 @@ class HttpClient {
   }
 
   void _handleError(String path, dynamic ex) {
-    Log.debug('path $path - ex: $ex');
+    Logger.debug('path $path - ex: $ex');
     if (ex is DioError) {
       _handleDioError(path, ex);
     } else if (ex is TApiExecption) {
@@ -68,7 +68,7 @@ class HttpClient {
     try {
       TExeption.fromException(ex);
     } catch (e) {
-      Log.error(e);
+      Logger.error(e);
       throw ex;
     }
   }

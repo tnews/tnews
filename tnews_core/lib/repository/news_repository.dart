@@ -112,10 +112,10 @@ class FakeNewsRepository extends NewsRepository {
     return list[random.nextInt(list.length)];
   }
 
-  XNews _getXNews() {
+  XNews _getXNews({String id}) {
     final List<String> categories = this.categories.map((Category item) => item.name).toList();
     return XNews(
-      id: ThinId.randomId(),
+      id: id ?? ThinId.randomId(),
       lang: ThinId.randomId(),
       source: getRandom(sources),
       author: getRandom(authors),
@@ -155,7 +155,7 @@ class FakeNewsRepository extends NewsRepository {
   @override
   Future<XNews> getXNews(String id) {
     return Future<Category>.delayed(timeDelay).then((_) {
-      return _getXNews();
+      return _getXNews(id: id);
     });
   }
 }

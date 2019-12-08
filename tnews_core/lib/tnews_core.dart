@@ -6,4 +6,4 @@ export 'exeption/exception.dart';
 export 'module/module.dart';
 export 'repository/repository.dart';
 export 'service/service.dart';
-export 'util/log.dart';
+export 'util/logger.dart';

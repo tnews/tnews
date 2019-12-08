@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tnews/common/resources/resources.dart';
-import 'package:tnews_core/util/log.dart';
+import 'package:tnews_core/util/logger.dart';
 
 export 'bottom_bar/bottom_bar.dart';
 

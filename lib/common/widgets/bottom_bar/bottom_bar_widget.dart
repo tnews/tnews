@@ -28,7 +28,7 @@ class _BottomBarWidgetState extends TState<BottomBarWidget> with SingleTickerPro
       vsync: this,
       length: children.length,
     )..addListener(() {
-        Log.debug("Ahihi tab ${tabController.index}");
+        Logger.debug("Ahihi tab ${tabController.index}");
       });
   }
 

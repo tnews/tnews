@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:tnews/common/theme/theme.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:tnews_core/util/log.dart';
+import 'package:tnews_core/util/logger.dart';
 
 part 'main_bloc_event.dart';
 part 'main_bloc_state.dart';
@@ -34,7 +34,7 @@ class MainAppBloc extends TBloc<MainBlocEvent, MainBlocState> {
 
   @override
   Stream<MainBlocState> eventToState(BaseEvent event) async* {
-    Log.debug("event ${event.runtimeType}");
+    Logger.debug("event ${event.runtimeType}");
     yield mapToState[event.runtimeType];
   }
 

@@ -9,7 +9,7 @@ part "string_converter.dart";
 part 'thinid.dart';
 part 'time_converter.dart';
 
-class Log {
+class Logger {
   static void debug(dynamic data) {
     printConsole("log_debug:: $data");
   }
