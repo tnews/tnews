@@ -28,7 +28,10 @@ class _NewsFeedScreenState extends TState<NewsFeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NewsFeedAppBar(),
+      appBar: NewsFeedAppBar(
+        onTapSearch: _onTapSearch,
+        onTapSetting: _onTapSetting,
+      ),
       body: Flex(
         direction: Axis.vertical,
         mainAxisSize: MainAxisSize.min,
@@ -80,6 +83,20 @@ class _NewsFeedScreenState extends TState<NewsFeedScreen> {
     }).catchError((_) {
       Logger.error(_);
       TWidget.showError(context: context, message: "Báo bạn đọc bị lỗi, mời thử lại!");
+    });
+  }
+
+  void _onTapSearch() {}
+
+  void _onTapSetting() {
+    TWidget.navigateToScreen<ResultPop>(
+      context: context,
+      screen: NewsSettingScreen(),
+      name: NewsSettingScreen.name,
+    ).then((ResultPop result) {
+      if (result == ResultPop.ReloadScreen) {
+        setState(() {});
+      }
     });
   }
 }

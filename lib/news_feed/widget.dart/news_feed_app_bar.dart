@@ -17,9 +17,9 @@ class NewsFeedAppBar extends TAppBar implements PreferredSizeWidget {
         children: <Widget>[
           Image.asset(Assets.imageAsset), //Logo
           Spacer(),
-          TCircleIcon(child: Icon(Icons.search)), //Icon Search
+          TCircleIcon(child: Icon(Icons.search), onTap: onTapSearch), //Icon Search
           SizedBox(width: 7),
-          TCircleIcon(child: Icon(Icons.settings)), //Icon Search
+          TCircleIcon(child: Icon(Icons.settings), onTap: onTapSetting), //Icon Search
           SizedBox(width: 15),
         ],
       ),
