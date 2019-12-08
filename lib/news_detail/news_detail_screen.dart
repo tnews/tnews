@@ -84,4 +84,5 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
 enum ResultPop {
   Success,
   Failure,
+  ReloadScreen,
 }
