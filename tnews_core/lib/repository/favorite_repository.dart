@@ -4,6 +4,8 @@ abstract class FavoriteRepository {
   Future<List<XNews>> getAllFavoriteNews();
   Future<bool> delete(String id);
   Future<bool> add(XNews news);
+
+  Future<bool> isFavorite(String id);
 }
 
 class LocalFavoriteRepository extends FavoriteRepository {
@@ -37,5 +39,14 @@ class LocalFavoriteRepository extends FavoriteRepository {
   Future<List<XNews>> getAllFavoriteNews() async {
     final List<String> jsonNews = shared.getStringList(_StorageKeys.favorite_news) ?? <String>[];
     return jsonNews.map((String str) => XNews.fromJson(json.decode(str))).toList();
+  }
+
+  @override
+  Future<bool> isFavorite(String id) {
+    return getAllFavoriteNews()
+        .then((_) => _.asMap().map((_, XNews item) => MapEntry<String, XNews>(item.id, item)))
+        .then((Map<String, XNews> item) => item[id] != null);
+    // .then((_) => _.firstWhere((XNews news) => news.id == id, orElse: () => null))
+    // .then((XNews news) => news != null);
   }
 }

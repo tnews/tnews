@@ -37,7 +37,7 @@ class DevModuleCore extends AbstractModule {
   }
 
   FileFetcherResponse _handleErrorCacheImage(dynamic ex, String url) {
-    Log.error('XFileCachedManager:: Error load $url, $ex');
+    Logger.error('XFileCachedManager:: Error load $url, $ex');
     return HttpFileFetcherResponse(null);
   }
 

@@ -5,7 +5,7 @@ import 'dart:math';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tnews_core/domain/domain.dart';
-import 'package:tnews_core/util/log.dart';
+import 'package:tnews_core/util/logger.dart';
 import 'package:meta/meta.dart';
 
 part 'storage_repository.dart';

@@ -19,7 +19,7 @@ abstract class BaseBloc<Event extends BaseEvent, State extends BaseState>
     extends Bloc<Event, State> {
   Stream<State> mapEventToState(Event event) {
     if (event is BaseErrorEvent) {
-      Log.debug("event ${event.runtimeType}");
+      Logger.debug("event ${event.runtimeType}");
       final Stream<State> baseState = errorToState(event);
       return baseState;
     } else {

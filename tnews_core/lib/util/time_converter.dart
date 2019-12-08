@@ -11,7 +11,7 @@ abstract class TimeConverter {
       time = _regExp.stringMatch(time);
       return _dateFormat.parse(time);
     } catch (ex) {
-      Log.debug('TimeConverter.stringToDateTime $ex');
+      Logger.debug('TimeConverter.stringToDateTime $ex');
       return null;
     }
   }

@@ -41,13 +41,17 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
 
   Widget _buildXNews(XNews news) {
     return Scaffold(
+      floatingActionButton: FloatFavoriteIcon(news),
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         primary: true,
         slivers: <Widget>[
           SliverPersistentHeader(
             delegate: SliverHeaderNewsDetailDelegate(
-                thumbnail: news.thumbnail, title: news.headline, onTapBack: _onTapBack),
+              thumbnail: news.thumbnail,
+              title: news.headline,
+              onTapBack: _onTapBack,
+            ),
             pinned: true,
             floating: false,
           ),

@@ -1,4 +1,4 @@
-part of tnews.news_detail;
+part of tnews.news_detail.widget;
 
 class SliverHeaderNewsDetailDelegate extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
