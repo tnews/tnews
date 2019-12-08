@@ -44,7 +44,7 @@ class NewsSettingScreen extends StatelessWidget {
   Widget _buildLanguage() {
     return Opacity(
       opacity: 0.2,
-      child: KikiOptionSettingWidget(title: "Ngôn ngữ của báo", trailingText: "Tiếng việt"),
+      child: NewsSettingOptionWidget(title: "Ngôn ngữ của báo", trailingText: "Tiếng việt"),
     );
   }
 
@@ -95,7 +95,7 @@ class NewsSettingScreen extends StatelessWidget {
     final String title = 'Thông báo';
     return Opacity(
       opacity: 1,
-      child: KikiOptionSettingWidget.customTrailing(
+      child: NewsSettingOptionWidget.customTrailing(
         title: title,
         trailing: Switch(
           onChanged: _onSoundEffectChanged,
@@ -109,7 +109,7 @@ class NewsSettingScreen extends StatelessWidget {
   }
 
   Widget _buildReport(BuildContext context) {
-    return KikiOptionSettingWidget.customTrailing(
+    return NewsSettingOptionWidget.customTrailing(
       title: "Báo cáo bài báo",
       trailing: Icon(Icons.report),
     );

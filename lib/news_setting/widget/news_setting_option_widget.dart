@@ -1,15 +1,15 @@
 part of tnews.news_setting.widget;
 
-class KikiOptionSettingWidget extends StatelessWidget {
+class NewsSettingOptionWidget extends StatelessWidget {
   final VoidCallback onTap;
   final Widget leading;
   final Widget trailing;
 
-  KikiOptionSettingWidget.custom(
+  NewsSettingOptionWidget.custom(
       {@required this.leading, @required this.trailing, Key key, this.onTap})
       : super(key: key);
 
-  KikiOptionSettingWidget(
+  NewsSettingOptionWidget(
       {@required String title, @required String trailingText, Key key, this.onTap})
       : leading = Text(title, style: TTextStyles.bold(fontSize: 16)),
         trailing = Text(
@@ -18,7 +18,7 @@ class KikiOptionSettingWidget extends StatelessWidget {
         ),
         super(key: key);
 
-  KikiOptionSettingWidget.customTrailing(
+  NewsSettingOptionWidget.customTrailing(
       {@required String title, @required this.trailing, Key key, this.onTap})
       : leading = Text(title, style: TTextStyles.semi(fontSize: 16)),
         super(key: key);
