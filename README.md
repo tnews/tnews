@@ -1,4 +1,6 @@
 # flutter_boilerplate
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftnews%2Ftnews.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftnews%2Ftnews?ref=badge_shield)
+
 
 A new Flutter project.
 
@@ -14,3 +16,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftnews%2Ftnews.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftnews%2Ftnews?ref=badge_large)
