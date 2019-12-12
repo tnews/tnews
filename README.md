@@ -1,22 +1,32 @@
-# flutter_boilerplate
+## Tnews
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftnews%2Ftnews.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftnews%2Ftnews?ref=badge_shield)
 
-
-A new Flutter project.
+Project cross-platform for read news easy
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Clone this project:
+```bash
+git clone https://github.com/tnews/tnews.git
+```
+Get packages:
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+flutter pub get
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Run project:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter run
+```
 
+## Some screen shot
+[](screen_shots/listing.png)
+<span><img width=150 src="screen_shots/splash.png" alt="splash" /><span/>
+<span><img width=150 src="screen_shots/listing.png" alt="listing" /><span/>
+<span><img width=150 src="screen_shots/detail_1.png" alt="detail_1" /><span/>
+<span><img width=150 src="screen_shots/detail_2.png" alt="detail_2" /><span/>
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftnews%2Ftnews.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftnews%2Ftnews?ref=badge_large)
