@@ -41,7 +41,8 @@ class NewsItemWidget extends XBaseNews {
 
   Widget _buildContent(ThemeData theme) {
     final String title = StringConverter.toPascalCase(news.headline) ?? '';
-    final String firstCategory = news.categories?.isNotEmpty == true ? news.categories.first : null;
+    final String firstCategory =
+        news.categories.isNotEmpty == true ? news.categories.first.name : null;
     final String category = StringConverter.toPascalCase(firstCategory) ?? '';
 
     return Container(

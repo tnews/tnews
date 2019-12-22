@@ -2,10 +2,10 @@ part of t_core.domain;
 
 class XNews {
   String id;
-  String lang;
+  Language lang;
   String source;
   String originId;
-  List<String> categories;
+  List<Category> categories;
   String headline;
   String description;
   List<String> contents;
@@ -40,10 +40,10 @@ class XNews {
 
   XNews.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    lang = json['lang'];
+    lang = json['lang'] != null ? Language.fromJson(json['lang']) : null;
     source = json['source'];
     originId = json['origin_id'];
-    categories = json['categories'].cast<String>();
+    categories = json['categories'] != null ? _parseToCategory(json['categories']) : [];
     headline = json['headline'];
     description = json['description'];
     contents = json['contents'].cast<String>();
@@ -78,5 +78,12 @@ class XNews {
     data['published_time'] = this.publishedTime;
     data['created_time'] = this.createdTime;
     return data;
+  }
+
+  List<Category> _parseToCategory(List<dynamic> list) {
+    return list
+        .cast<Map<String, dynamic>>()
+        .map((json) => Category.fromJson(json))
+        .toList();
   }
 }
