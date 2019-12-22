@@ -16,7 +16,7 @@ class DevModuleCore extends AbstractModule {
     bind(DIKeys.cache_image).to(await _buildCacheImage());
     bind(SharedPreferences).to(await _buildSharedPrefrendces());
     bind(StorageService).to(_buildStorageService());
-    bind(NewsRepository).to(FakeNewsRepository());
+    bind(NewsRepository).to(_buildNewsRepository());
     bind(NewsService).to(_buildNewsService());
     bind(FavoriteRepository).to(avoriteRepository());
     bind(FavoriteService).to(_buildFavoriteService());
@@ -100,5 +100,10 @@ class DevModuleCore extends AbstractModule {
   HistoryService _buildHistoryService() {
     final CachedNewsDetailService service = this.get(CachedNewsDetailService);
     return HistoryServiceImpl(service);
+  }
+
+  NewsRepository _buildNewsRepository() {
+    final HttpClient client = this.get(DIKeys.dio_client);
+    return NewsRepositoryImpl(client);
   }
 }

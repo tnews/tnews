@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tnews_core/client/client.dart';
 import 'package:tnews_core/domain/domain.dart';
 import 'package:tnews_core/util/logger.dart';
 import 'package:meta/meta.dart';

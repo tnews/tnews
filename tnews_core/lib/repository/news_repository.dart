@@ -113,7 +113,8 @@ class FakeNewsRepository extends NewsRepository {
   }
 
   XNews _getXNews({String id}) {
-    final List<String> categories = this.categories.map((Category item) => item.name).toList();
+    final List<String> categories =
+        this.categories.map((Category item) => item.name).toList();
     return XNews(
       id: id ?? ThinId.randomId(),
       lang: ThinId.randomId(),
@@ -157,5 +158,63 @@ class FakeNewsRepository extends NewsRepository {
     return Future<Category>.delayed(timeDelay).then((_) {
       return _getXNews(id: id);
     });
+  }
+}
+
+class NewsRepositoryImpl extends NewsRepository {
+  final HttpClient client;
+
+  NewsRepositoryImpl(this.client);
+  @override
+  Future<List<Category>> getCategories() {
+    return client.get<List<dynamic>>('/news/category').then((_) => _parseCategories(_));
+  }
+
+  @override
+  Future<List<Language>> getLanguages() {
+    return client.get('/news/language').then((_) => parseLanguage(_));
+  }
+
+  @override
+  Future<News> getNews(String id) {
+    // TODO: implement getNews
+    return null;
+  }
+
+  @override
+  Future<XNews> getXNews(String id) {
+    return client.get('/news/getNews/$id').then((_) => XNews.fromJson(_));
+  }
+
+  @override
+  Future<List<XNews>> searchXNews([SearchRequest request]) {
+    final Map map = <String, dynamic>{};
+    map['offset'] = request?.from ?? 0;
+
+    return client.get('/news', params: map).then((_) => _parseNews(_));
+  }
+
+  List<Category> _parseCategories(List<dynamic> list) {
+    return list
+        .cast<Map<String, dynamic>>()
+        .map((item) => Category.fromJson(item))
+        .toList();
+  }
+
+  List<XNews> _parseNews(List<dynamic> list) {
+    return list.cast<Map<String, dynamic>>().map((json) => XNews.fromJson(json)).toList();
+  }
+
+  List<Language> parseLanguage(List<dynamic> list) {
+    return list
+        .cast<Map<String, dynamic>>()
+        .map((json) => Language.fromJson(json))
+        .toList();
+  }
+
+  @override
+  Future<List<News>> searchNews([SearchRequest request]) {
+    // TODO: implement searchNews
+    return null;
   }
 }

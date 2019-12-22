@@ -10,7 +10,7 @@ enum Mode { Debug, Production }
 
 class Config {
   static const Map<String, dynamic> _debug = <String, dynamic>{
-    'api_host': 'https://reqres.in',
+    'api_host': 'http://tvc12-news.herokuapp.com',
   };
 
   // static const Map<String, dynamic> _production = <String, dynamic>{
