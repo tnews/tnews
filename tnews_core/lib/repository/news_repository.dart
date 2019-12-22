@@ -4,7 +4,7 @@ abstract class NewsRepository {
   Future<List<Language>> getLanguages();
   Future<List<Category>> getCategories();
   Future<List<News>> searchNews([SearchRequest request]);
-  Future<List<XNews>> searchXNews([SearchRequest request]);
+  Future<List<XNews>> searchXNews(int offset, int limit, String categoryId);
   Future<XNews> getXNews(String id);
   Future<News> getNews(String id);
 }
@@ -37,18 +37,6 @@ class NewsRepositoryImpl extends NewsRepository {
     return client.get('/news/getNews/$id').then((_) => XNews.fromJson(_));
   }
 
-  @override
-  Future<List<XNews>> searchXNews([SearchRequest request]) {
-    final Map map = <String, dynamic>{};
-    map['offset'] = request?.from ?? 0;
-    Logger.debug("searchXNews");
-
-    return client
-        .get('/news', params: map)
-        .then((_) => _parseNews(_))
-        .catchError((_, x) => Logger.error(x));
-  }
-
   List<Category> _parseCategories(List<dynamic> list) {
     return list
         .cast<Map<String, dynamic>>()
@@ -57,7 +45,6 @@ class NewsRepositoryImpl extends NewsRepository {
   }
 
   List<XNews> _parseNews(List<dynamic> list) {
-    Logger.debug('_parseNews $list');
     return list.cast<Map<String, dynamic>>().map((json) => XNews.fromJson(json)).toList();
   }
 
@@ -70,7 +57,20 @@ class NewsRepositoryImpl extends NewsRepository {
 
   @override
   Future<List<News>> searchNews([SearchRequest request]) {
-    // TODO: implement searchNews
     return null;
+  }
+
+  @override
+  Future<List<XNews>> searchXNews(int offset, int limit, String categoryId) {
+    final Map map = <String, dynamic>{};
+    map['offset'] = offset;
+    map['limit'] = limit;
+    map['category_id'] = categoryId;
+
+    return client
+        .get('/news', params: map)
+        .then((_) => _parseNews(_))
+        .catchError((_, x) => Logger.error(x));
+    ;
   }
 }

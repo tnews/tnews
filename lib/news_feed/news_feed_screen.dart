@@ -8,7 +8,8 @@ class NewsFeedScreen extends TStatefulWidget {
 }
 
 class _NewsFeedScreenState extends TState<NewsFeedScreen> {
-  final Future<List<XNews>> news = NewsFeedScreen.service.searchXNews();
+  Future<List<XNews>> news =
+      NewsFeedScreen.service.searchXNews(0, limit: 15, categoryId: '1');
 
   final Future<List<Category>> categories = NewsFeedScreen.service.getCategories();
   double height = 0;
@@ -39,7 +40,12 @@ class _NewsFeedScreenState extends TState<NewsFeedScreen> {
           AnimatedContainer(
             height: height,
             duration: const Duration(milliseconds: 150),
-            child: height != 0 ? CategoryBarWidget(categories: data) : SizedBox(),
+            child: height != 0
+                ? CategoryBarWidget(
+                    categories: data,
+                    onCategoryChanged: _onCategoryChanged,
+                  )
+                : SizedBox(),
           ),
           Flexible(
             child: FutureBuilder<List<XNews>>(
@@ -98,5 +104,9 @@ class _NewsFeedScreenState extends TState<NewsFeedScreen> {
         setState(() {});
       }
     });
+  }
+
+  void _onCategoryChanged(Category value) {
+    news = NewsFeedScreen.service.searchXNews(0, categoryId: value.id);
   }
 }

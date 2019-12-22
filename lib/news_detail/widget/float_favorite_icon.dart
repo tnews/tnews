@@ -39,7 +39,7 @@ class _FloatFavoriteIconState extends State<FloatFavoriteIcon> {
 
   void _onPress() {
     Logger.debug("On press $isFavorite");
-    if (isFavorite) {
+    if (!isFavorite) {
       service.add(news);
     } else {
       service.delete(news.id);

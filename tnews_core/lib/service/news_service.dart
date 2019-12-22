@@ -4,7 +4,7 @@ abstract class NewsService {
   Future<List<Language>> getLanguages();
   Future<List<Category>> getCategories();
   Future<List<News>> searchNews([SearchRequest request]);
-  Future<List<XNews>> searchXNews([SearchRequest request]);
+  Future<List<XNews>> searchXNews(int offset, {int limit, String categoryId});
 }
 
 class NewsServiceImpl extends NewsService {
@@ -19,12 +19,6 @@ class NewsServiceImpl extends NewsService {
   }
 
   @override
-  Future<List<XNews>> searchXNews([SearchRequest request]) {
-    final SearchRequest req = request ?? SearchRequest.defaultSearchNews();
-    return repository.searchXNews(req);
-  }
-
-  @override
   Future<List<Category>> getCategories() {
     return repository.getCategories();
   }
@@ -32,5 +26,10 @@ class NewsServiceImpl extends NewsService {
   @override
   Future<List<Language>> getLanguages() {
     return repository.getLanguages();
+  }
+
+  @override
+  Future<List<XNews>> searchXNews(int offset, {int limit, String categoryId}) {
+    return repository.searchXNews(offset, limit, categoryId);
   }
 }
