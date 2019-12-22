@@ -107,6 +107,8 @@ class _NewsFeedScreenState extends TState<NewsFeedScreen> {
   }
 
   void _onCategoryChanged(Category value) {
-    news = NewsFeedScreen.service.searchXNews(0, categoryId: value.id);
+    setState(() {
+      news = NewsFeedScreen.service.searchXNews(0, categoryId: value.id);
+    });
   }
 }
