@@ -11,7 +11,7 @@ class _FavoriteScreenState extends TState<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("FAVORITE NEWS")),
+      appBar: AppBar(title: Text("TIN YÊU THÍCH")),
       body: FutureBuilder<List<XNews>>(
         future: favoriteService.getAllFavoriteNews(),
         builder: (_, AsyncSnapshot<List<XNews>> snapshot) {

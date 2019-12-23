@@ -1,7 +1,6 @@
 library t_core.repository;
 
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tnews_core/client/client.dart';

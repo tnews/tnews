@@ -11,7 +11,7 @@ class _HistoryScreenState extends TState<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("FAVORITE NEWS")),
+      appBar: AppBar(title: Text("LỊCH SỬ")),
       body: FutureBuilder<List<XNews>>(
         future: historyService.getAllNews(),
         builder: (_, AsyncSnapshot<List<XNews>> snapshot) {

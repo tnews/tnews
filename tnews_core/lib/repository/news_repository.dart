@@ -26,7 +26,6 @@ class NewsRepositoryImpl extends NewsRepository {
   @override
   Future<News> getNews(String id) {
     Logger.debug("getNews");
-    // TODO: implement getNews
     return null;
   }
 
@@ -71,6 +70,5 @@ class NewsRepositoryImpl extends NewsRepository {
         .get('/news', params: map)
         .then((_) => _parseNews(_))
         .catchError((_, x) => Logger.error(x));
-    ;
   }
 }
