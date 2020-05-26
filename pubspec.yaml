@@ -15,6 +15,7 @@ dependencies:
   cached_network_image: 2.2.0+1
   shimmer: 1.1.1
   url_launcher: 5.4.10
+  ansicolor: 1.0.2
 
   tnews_core:
     path: tnews_core
