@@ -7,8 +7,6 @@ part 'dark_theme.dart';
 part 'light_theme.dart';
 
 abstract class TNewsTheme {
-  ThemeData getTheme();
-
   final TextTheme textTheme = TextTheme(
     bodyText2: TTextStyles.normal(fontSize: 16, letterSpacing: 0.5),
     bodyText1: TTextStyles.normal(fontSize: 14, letterSpacing: 0.25),
@@ -24,4 +22,6 @@ abstract class TNewsTheme {
     caption: TTextStyles.normal(fontSize: 12, letterSpacing: 0.4),
     overline: TTextStyles.normal(fontSize: 10, letterSpacing: 1.5),
   );
+
+  ThemeData getTheme();
 }
