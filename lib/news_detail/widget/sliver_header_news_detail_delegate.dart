@@ -48,7 +48,7 @@ class SliverHeaderNewsDetailDelegate extends SliverPersistentHeaderDelegate {
               title,
               maxLines: 4,
               overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).accentTextTheme.title,
+              style: Theme.of(context).accentTextTheme.headline6,
             ),
           ),
         ),

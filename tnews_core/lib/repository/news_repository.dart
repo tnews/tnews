@@ -25,13 +25,13 @@ class NewsRepositoryImpl extends NewsRepository {
 
   @override
   Future<News> getNews(String id) {
-    Logger.debug("getNews");
+    Logger.debug('getNews');
     return null;
   }
 
   @override
   Future<XNews> getXNews(String id) {
-    Logger.debug("getXNews");
+    Logger.debug('getXNews');
 
     return client.get('/news/getNews/$id').then((_) => XNews.fromJson(_));
   }

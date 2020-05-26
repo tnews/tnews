@@ -25,7 +25,7 @@ abstract class StringConverter {
   static List<String> getListWordFromString(String value) {
     return <String>[]..addAll(value
             ?.replaceAll(RegExp(r'\n|\r'), ' ')
-            ?.split(RegExp(r"\s+"))
+            ?.split(RegExp(r'\s+'))
             ?.where((String word) => word.isNotEmpty) ??
         <String>[],);
   }

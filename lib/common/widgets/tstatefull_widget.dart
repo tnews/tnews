@@ -31,7 +31,7 @@ abstract class TWidget {
           ),
         );
     } catch (e) {
-      Logger.error("_showError: $e");
+      Logger.error('_showError:: $e');
     }
   }
 }

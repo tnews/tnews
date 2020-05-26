@@ -65,7 +65,7 @@ class NewsItemWidget extends XBaseNews {
   Widget _buildTitle(String title, ThemeData theme) {
     return Text(
       title,
-      style: theme.textTheme.title.copyWith(
+      style: theme.textTheme.headline6.copyWith(
         fontWeight: FontWeight.w900,
         color: theme.accentColor,
       ),
@@ -82,13 +82,13 @@ class NewsItemWidget extends XBaseNews {
       children: <Widget>[
         Text(
           category,
-          style: theme.textTheme.subtitle,
+          style: theme.textTheme.subtitle2,
           maxLines: 1,
         ),
-        Text(" • ", style: theme.textTheme.subtitle),
+        Text(' • ', style: theme.textTheme.subtitle2),
         Text(
           source,
-          style: theme.textTheme.subtitle.copyWith(
+          style: theme.textTheme.subtitle2.copyWith(
             color: theme.primaryColor.withOpacity(0.8),
             fontStyle: FontStyle.italic,
             decoration: TextDecoration.underline,

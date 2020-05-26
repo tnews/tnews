@@ -11,7 +11,7 @@ class _FavoriteScreenState extends TState<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("TIN YÊU THÍCH")),
+      appBar: AppBar(title: Text('FAVORITE POST')),
       body: FutureBuilder<List<XNews>>(
         future: favoriteService.getAllFavoriteNews(),
         builder: (_, AsyncSnapshot<List<XNews>> snapshot) {
@@ -42,11 +42,11 @@ class _FavoriteScreenState extends TState<FavoriteScreen> {
       context: context,
     ).then((ResultPop result) {
       if (result == ResultPop.Failure) {
-        TWidget.showError(context: context, message: "Báo bạn đọc bị lỗi, mời thử lại!");
+        TWidget.showError(context: context, message: 'Báo bạn đọc bị lỗi, mời thử lại!');
       }
     }).catchError((_) {
       Logger.error(_);
-      TWidget.showError(context: context, message: "Báo bạn đọc bị lỗi, mời thử lại!");
+      TWidget.showError(context: context, message: 'Báo bạn đọc bị lỗi, mời thử lại!');
     });
   }
 }

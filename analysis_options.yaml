@@ -7,7 +7,7 @@
 # # Uncomment to specify additional rules.
 linter:
   rules:
-    - avoid_as
+    # - avoid_as
     - camel_case_types
     - avoid_print
     - unnecessary_new
@@ -15,13 +15,13 @@ linter:
     - hash_and_equals
     - no_duplicate_case_values
     - prefer_void_to_null
+    - prefer_single_quotes
     - always_declare_return_types
-    - always_put_required_named_parameters_first
     # - always_specify_types
     - avoid_init_to_null
     - avoid_returning_null_for_void
     - avoid_shadowing_type_parameters
-    # - avoid_single_cascade_in_expression_statements
+    - avoid_single_cascade_in_expression_statements
     - avoid_unused_constructor_parameters
     - cascade_invocations
     - directives_ordering
@@ -32,9 +32,12 @@ linter:
     - non_constant_identifier_names
     - null_closures
     - only_throw_errors
+    - prefer_is_empty
+    - prefer_if_null_operators
+    - prefer_null_aware_operators
 analyzer:
   errors:
-    avoid_as: error
+    # avoid_as: error
     camel_case_types: error
     avoid_print: error
     unnecessary_new: error
@@ -45,3 +48,4 @@ analyzer:
     empty_constructor_bodies: error
     file_names: error
     null_closures: error
+    invalid_use_of_protected_member: error

@@ -27,37 +27,27 @@ class DevModuleCore extends AbstractModule {
 
   HttpClient _buildClient() {
     final BaseOptions baseOption = BaseOptions(
-      baseUrl: Config.getString("api_host"),
+      baseUrl: Config.getString('api_host'),
       connectTimeout: 10000,
       receiveTimeout: 5000,
-      headers: <String, dynamic>{HttpHeaders.contentTypeHeader: 'application/json'},
+      headers: <String, dynamic>{
+        HttpHeaders.contentTypeHeader: 'application/json'
+      },
     );
     Dio dio = Dio(baseOption);
     return HttpClient.init(dio);
   }
 
-  FileFetcherResponse _handleErrorCacheImage(dynamic ex, String url) {
-    Logger.error('XFileCachedManager:: Error load $url, $ex');
-    return HttpFileFetcherResponse(null);
-  }
-
   Future<TCacheService> _buildCacheImage() async {
-    final Duration conectTimeout = Duration(seconds: 15);
     final Directory directory = await getTemporaryDirectory();
-    final FileFetcher httpFileFetcher = (String url, {Map<String, String> headers}) {
-      return http
-          .get(url)
-          .timeout(conectTimeout)
-          .then((http.Response reponse) => HttpFileFetcherResponse(reponse))
-          .catchError((dynamic ex) => _handleErrorCacheImage(ex, url));
-    };
+    FileService fileService = HttpFileService(httpClient: http.Client());
 
     return TCacheService(
       KeysCached.imageCache,
       directory,
       maxAgeCacheObject: Duration(days: 60),
       maxNrOfCacheObjects: 500,
-      fileFetcher: httpFileFetcher,
+      fileSerivce: fileService,
     );
   }
 
@@ -66,7 +56,8 @@ class DevModuleCore extends AbstractModule {
   }
 
   StorageService _buildStorageService() {
-    final SharedPreferences shared = this.get<SharedPreferences>(SharedPreferences);
+    final SharedPreferences shared =
+        this.get<SharedPreferences>(SharedPreferences);
     final StorageRepository repository = StorageRepositoryImpl(shared);
     return StorageServiceImpl(repository);
   }
