@@ -13,11 +13,11 @@ class MainAppScreen extends TStatelessWidget {
       themeMode: bloc.themeMode,
       navigatorObservers: <NavigatorObserver>[TNavigatorObserver()],
       onGenerateRoute: (RouteSettings route) {
-        Logger.info("onGenerateRoute $route");
+        Logger.info('onGenerateRoute $route');
         return null;
       },
       onUnknownRoute: (RouteSettings route) {
-        Logger.info("onUnknownRoute $route");
+        Logger.info('onUnknownRoute $route');
         return null;
       },
       routes: <String, WidgetBuilder>{

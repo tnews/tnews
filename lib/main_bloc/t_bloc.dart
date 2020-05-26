@@ -6,9 +6,11 @@ abstract class TBloc<Event extends BaseEvent, State extends BaseState>
   Duration get delayEvent;
 
   @override
-  Stream<State> transformEvents(Stream<Event> events, Stream<State> Function(Event event) next) {
-    final Observable<Event> eventsObservable = events;
-    return eventsObservable.debounceTime(delayEvent).switchMap(next);
+  Stream<Transition<Event, State>> transformEvents(    
+    Stream<Event> events,
+    TransitionFunction<Event, State> transitionFn,
+    ) {
+    return events.debounceTime(delayEvent).switchMap(transitionFn);
   }
 
   @protected
@@ -19,7 +21,7 @@ abstract class BaseBloc<Event extends BaseEvent, State extends BaseState>
     extends Bloc<Event, State> {
   Stream<State> mapEventToState(Event event) {
     if (event is BaseErrorEvent) {
-      Logger.debug("event ${event.runtimeType}");
+      Logger.debug('event ${event.runtimeType}');
       final Stream<State> baseState = errorToState(event);
       return baseState;
     } else {
@@ -40,13 +42,13 @@ abstract class BaseBloc<Event extends BaseEvent, State extends BaseState>
 @immutable
 abstract class BaseEvent {
   @override
-  String toString() => "$runtimeType";
+  String toString() => '$runtimeType';
 }
 
 @immutable
 abstract class BaseState {
   @override
-  String toString() => "$runtimeType";
+  String toString() => '$runtimeType';
 }
 
 abstract class BaseErrorEvent extends BaseEvent {
@@ -55,7 +57,7 @@ abstract class BaseErrorEvent extends BaseEvent {
   BaseErrorEvent(this.message);
 
   @override
-  String toString() => "$runtimeType $message";
+  String toString() => '$runtimeType $message';
 }
 
 abstract class BaseErrorState extends BaseState {
@@ -64,5 +66,5 @@ abstract class BaseErrorState extends BaseState {
   BaseErrorState(this.message);
 
   @override
-  String toString() => "$runtimeType $message";
+  String toString() => '$runtimeType $message';
 }

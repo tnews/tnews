@@ -1,7 +1,7 @@
 part of tnews.news_setting;
 
 class NewsSettingScreen extends StatelessWidget {
-  static String name = "/NewsSettingScreen";
+  static String name = '/NewsSettingScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class NewsSettingScreen extends StatelessWidget {
   Widget _buildLanguage() {
     return Opacity(
       opacity: 0.2,
-      child: NewsSettingOptionWidget(title: "Ngôn ngữ của báo", trailingText: "Tiếng việt"),
+      child: NewsSettingOptionWidget(title: 'Ngôn ngữ của báo', trailingText: 'Tiếng việt'),
     );
   }
 
@@ -70,11 +70,11 @@ class NewsSettingScreen extends StatelessWidget {
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
-                        text: "Copyright belongs to ",
+                        text: 'Copyright belongs to ',
                         style: TTextStyles.black(color: TColors.black10),
                       ),
                       TextSpan(
-                        text: "tvc12",
+                        text: 'tvc12',
                         style: TTextStyles.black().copyWith(
                           decoration: TextDecoration.underline,
                           color: TColors.deepSkyBlue.withAlpha(128),
@@ -110,15 +110,15 @@ class NewsSettingScreen extends StatelessWidget {
 
   Widget _buildReport(BuildContext context) {
     return NewsSettingOptionWidget.customTrailing(
-      title: "Báo cáo bài báo",
+      title: 'Báo cáo bài báo',
       trailing: Icon(Icons.report),
     );
   }
 
   void _navigateToLink() {
-    final String url = "https://github.com/tvc12";
+    final String url = 'https://github.com/tvc12';
     canLaunch(url)
-        .then((bool isLaunch) => isLaunch ? launch(url) : throw Exception("Can't launch $url"))
+        .then((bool isLaunch) => isLaunch ? launch(url) : throw Exception('Can\'t launch $url'))
         .catchError((dynamic ex) => Logger.error(ex));
   }
 

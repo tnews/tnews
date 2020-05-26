@@ -34,7 +34,7 @@ class MainAppBloc extends TBloc<MainBlocEvent, MainBlocState> {
 
   @override
   Stream<MainBlocState> eventToState(BaseEvent event) async* {
-    Logger.debug("event ${event.runtimeType}");
+    Logger.debug('event ${event.runtimeType}');
     yield mapToState[event.runtimeType];
   }
 

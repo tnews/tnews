@@ -40,8 +40,8 @@ class CategoryItemWidget extends StatelessWidget {
 
   TextStyle _getStyle(bool isSelected, ThemeData theme) {
     return isSelected
-        ? theme.accentTextTheme.body1
-        : theme.accentTextTheme.body1.copyWith(color: theme.textTheme.body1.color);
+        ? theme.accentTextTheme.bodyText2
+        : theme.accentTextTheme.bodyText2.copyWith(color: theme.textTheme.bodyText2.color);
   }
 
   Border _getBorder(bool isSelected, ThemeData theme) {

@@ -17,7 +17,7 @@ class _FloatFavoriteIconState extends State<FloatFavoriteIcon> {
   void initState() {
     super.initState();
     service.isFavorite(news.id).then((bool values) {
-      Logger.debug("------------------------ $values");
+      Logger.debug('------------------------ $values');
       if (isFavorite != values) {
         setState(() {
           isFavorite = values;
@@ -38,7 +38,7 @@ class _FloatFavoriteIconState extends State<FloatFavoriteIcon> {
   }
 
   void _onPress() {
-    Logger.debug("On press $isFavorite");
+    Logger.debug('On press $isFavorite');
     if (!isFavorite) {
       service.add(news);
     } else {

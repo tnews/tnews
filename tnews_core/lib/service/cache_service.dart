@@ -3,17 +3,18 @@ part of t_core.service;
 class TCacheService extends BaseCacheManager {
   final Directory dictionary;
   final String key;
+
   TCacheService(
     this.key,
     this.dictionary, {
     Duration maxAgeCacheObject = const Duration(days: 30),
     int maxNrOfCacheObjects = 200,
-    FileFetcher fileFetcher,
+    FileService fileSerivce,
   }) : super(
           key,
           maxAgeCacheObject: maxAgeCacheObject,
           maxNrOfCacheObjects: maxNrOfCacheObjects,
-          fileFetcher: fileFetcher,
+          fileService: fileSerivce,
         );
 
   @override

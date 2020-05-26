@@ -20,14 +20,14 @@ class CreatedApp extends MainBlocState {
   CreatedApp() : super(AppStatus.Created);
 
   @override
-  String toString() => "CreatedApp";
+  String toString() => 'CreatedApp';
 }
 
 class InitApp extends MainBlocState {
   InitApp() : super(AppStatus.Init);
 
   @override
-  String toString() => "InitApp";
+  String toString() => 'InitApp';
 }
 
 class ActiveApp extends MainBlocState {
@@ -40,12 +40,12 @@ class ActiveApp extends MainBlocState {
 class ReloadApp extends MainBlocState {
   ReloadApp() : super(AppStatus.Reload);
   @override
-  String toString() => "AppStatus";
+  String toString() => 'AppStatus';
 }
 
 class DeActiveApp extends MainBlocState {
   DeActiveApp() : super(AppStatus.DeActive);
 
   @override
-  String toString() => "DeActiveApp";
+  String toString() => 'DeActiveApp';
 }

@@ -11,7 +11,7 @@ class _HistoryScreenState extends TState<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("LỊCH SỬ")),
+      appBar: AppBar(title: Text('LỊCH SỬ')),
       body: FutureBuilder<List<XNews>>(
         future: historyService.getAllNews(),
         builder: (_, AsyncSnapshot<List<XNews>> snapshot) {
@@ -45,11 +45,11 @@ class _HistoryScreenState extends TState<HistoryScreen> {
       context: context,
     ).then((ResultPop result) {
       if (result == ResultPop.Failure) {
-        TWidget.showError(context: context, message: "Báo bạn đọc bị lỗi, mời thử lại!");
+        TWidget.showError(context: context, message: 'Báo bạn đọc bị lỗi, mời thử lại!');
       }
     }).catchError((_) {
       Logger.error(_);
-      TWidget.showError(context: context, message: "Báo bạn đọc bị lỗi, mời thử lại!");
+      TWidget.showError(context: context, message: 'Báo bạn đọc bị lỗi, mời thử lại!');
     });
   }
 }

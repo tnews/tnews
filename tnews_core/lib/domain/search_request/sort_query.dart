@@ -1,8 +1,8 @@
 part of t_core.domain.search_request;
 
 class SortQuery {
-  static const String OrderAsc = "ASC";
-  static const String OrderDesc = "DESC";
+  static const String OrderAsc = 'ASC';
+  static const String OrderDesc = 'DESC';
   
   String field;
   String order;

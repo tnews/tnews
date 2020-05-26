@@ -11,7 +11,7 @@ class TPageRoute<T> extends PageRoute<T> {
     RouteSettings settings,
     this.maintainState = true,
     bool fullscreenDialog = false,
-  })  : assert(maintainState != null, "maintainState must not null"),
+  })  : assert(maintainState != null, 'maintainState must not null'),
         super(fullscreenDialog: fullscreenDialog ?? false, settings: settings);
 
   @override
@@ -31,7 +31,7 @@ class TPageRoute<T> extends PageRoute<T> {
     Animation<double> secondaryAnimation,
     Widget child,
   ) {
-    Logger.info("$runtimeType buildTransitions");
+    Logger.info('$runtimeType buildTransitions');
     return ScaleTransition(
       child: child,
       scale: Tween<double>(begin: 0.0, end: 1).animate(

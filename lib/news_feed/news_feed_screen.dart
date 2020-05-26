@@ -84,11 +84,11 @@ class _NewsFeedScreenState extends TState<NewsFeedScreen> {
       context: context,
     ).then((ResultPop result) {
       if (result == ResultPop.Failure) {
-        TWidget.showError(context: context, message: "Báo bạn đọc bị lỗi, mời thử lại!");
+        TWidget.showError(context: context, message: 'Báo bạn đọc bị lỗi, mời thử lại!');
       }
     }).catchError((_) {
       Logger.error(_);
-      TWidget.showError(context: context, message: "Báo bạn đọc bị lỗi, mời thử lại!");
+      TWidget.showError(context: context, message: 'Báo bạn đọc bị lỗi, mời thử lại!');
     });
   }
 

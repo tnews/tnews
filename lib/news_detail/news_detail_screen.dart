@@ -1,7 +1,7 @@
 part of tnews.news_detail;
 
 class NewsDetailScreen extends StatefulWidget {
-  static const String name = "/NewsDetailScreen";
+  static const String name = '/NewsDetailScreen';
   final String id;
 
   const NewsDetailScreen({@required this.id, Key key}) : super(key: key);
